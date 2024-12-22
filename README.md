@@ -1,0 +1,10 @@
+This is a web application called "Grocery Buddy" that will help people who cook at home to plan for their grocery shopping. With this application they will be able to know how much they should buy so that they do not overbuy and thus this will reduce their food wastage. This solution is generally used to help people who have a tendency to overbuy their groceries, which often leads to them having to throw spoilt food away as they have been kept too long. With this application, people would be able to better track how much exactly they should buy so that they may reduce their food wastage and also save money from overbuying too much food. 
+
+Note: the code is not completed yet and has limited functionalities (but it can go from page to page)
+Current identified problems/areas that lack the code due to lack of time to implement it: 
+1. When creating recipes, the code to retrieve the information from the html file to python code, then inputting the retrieved information into the database is missing
+2. Deleting recipes does not truly delete the recipe: deleting recipe is not reflected in the save recipes page, neither is it reflected in the database
+3. Weekly Planner: the labels for the dropdown button to select which recipe to cook for the day is not updated, and saving the plan only redirects the user to the groceries page. This information is not saved into the Groceries table of the database 
+4. Calculating groceries: the code to do so is missing entirely
+5. Saved recipes: There is no code to reflect the different ingredients each recipe has (i.e. for now, all recipes have the same ingredients) => the code to connect to the database to retrieve the information is there, but there is no code to bring the retrieved information into the html file to be displayed for the user
+6. Lack of back buttons: pages like the page for grocery planner and the page to view saved recipes have no back button, which affects the user control and freedom to move wherever they wish (usability heuristics #3 is not present)
