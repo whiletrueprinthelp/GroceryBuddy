@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grocery Planner</title> <!-- Tab Title-->
+    <style>
+        body {
+            background-color: #fde4ce;
+            font-family: monospace;
+            color: #242525; 
+            margin: 0px;
+            padding: 0px;  
+        }
+
+        h1, h2, h3 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 30px;
+            color: #fde4ce;
+        }
+
+        .topnav {
+            display: flex; /* Use Flexbox */
+            align-items: center; /* Align items vertically in the center */
+            justify-content: space-between; /* Space between elements */
+            padding: 25px 30px; /* Adjust padding */
+            background-color: #4E070C;
+            height: 30px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav {
+                flex-direction: column; /* Stack items vertically */
+                height: auto; /* Allow the header height to adjust */
+                padding: 15px; /* Adjust padding for small screens */
+            }
+        }
+
+        .bigcont {
+            display: flex; /* Use Flexbox to display two columns */
+            justify-content: space-between; /* Space out the two containers */
+            padding: 20px; /* Padding around the containers */
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%; /* Full-width table */
+            border-collapse: collapse; /* Collapse borders between table cells */
+            margin-top: 10px; /* Reduced the top margin */
+        }
+
+        th, td {
+            padding: 15px; /* Add padding inside the cells */
+            text-align: center; /* Center align the text */
+            border: 1px solid #ddd; /* Light gray border */
+        }
+
+        th {
+            background-color: #4E070C; /* Dark background for the header */
+            color: white; /* White text color */
+            font-weight: bold; /* Bold text for headers */
+        }
+
+        td {
+            background-color: #f9f9f9; /* Light background for table cells */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray background for even rows */
+        }
+
+        tr:hover {
+            background-color: #ddd; /* Darken row on hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="topnav">
+        <h1>Grocery Planner</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="bigcont">
+        <!-- Table Section -->
+        <div>
+            <h2>Ingredient List</h2> <!-- Section heading -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Weight (g)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apple</td>
+                        <td>200</td>
+                    </tr>
+                    <tr>
+                        <td>Banana</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>Carrot</td>
+                        <td>150</td>
+                    </tr>
+                    <tr>
+                        <td>Tomato</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>Spinach</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>Potato</td>
+                        <td>250</td>
+                    </tr>
+                    <tr>
+                        <td>Onion</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>Garlic</td>
+                        <td>50</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

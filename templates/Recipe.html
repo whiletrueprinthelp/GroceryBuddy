@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grocery Buddy</title> <!-- Tab Title-->
+    <style>
+        body {
+            background-color: #fde4ce;
+            font-family: monospace;
+            color: #242525; 
+            margin: 0px;
+            padding: 0px;  
+        }
+
+        h1, h2, h3 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 30px;
+            color: #fde4ce;
+        }
+
+        .topnav {
+            display: flex; /* Use Flexbox */
+            align-items: center; /* Align items vertically in the center */
+            justify-content: space-between; /* Space between elements */
+            padding: 25px 30px; /* Adjust padding */
+            background-color: #4E070C;
+            height: 30px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav {
+                flex-direction: column; /* Stack items vertically */
+                height: auto; /* Allow the header height to adjust */
+                padding: 15px; /* Adjust padding for small screens */
+            }
+        }
+
+        .bigcont {
+            justify-content: space-between; /* Space out the two containers */
+            padding: 20px; /* Padding around the containers */
+            display: grid; /* Use CSS Grid */
+            grid-template-columns: repeat(3, 1fr); /* Create 3 columns */
+            grid-template-rows: repeat(6, 1fr);
+            grid-gap: 20px; /* Space between items */
+        }
+
+        .bigcont .item {
+            background-color: #f7f7f7; /* Background color for the items */
+            padding: 20px; /* Padding inside items */
+            border-radius: 8px; /* Rounded corners */
+            width: 15vw;
+            height: 10vw;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="topnav">
+        <h1>Saved Recipes</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="bigcont">
+        <!-- Recipe Buttons -->
+	{% for recipe in recipe_list %}
+	<form action="/viewonerecipe">
+        <button class="item" onclick="openPopup({{ recipe[0] }})">
+            <h4>{{ recipe[0] }}</h4>
+        </button>
+	</form>
+	{% endfor %}
+    </div>
+</body>
+</html>

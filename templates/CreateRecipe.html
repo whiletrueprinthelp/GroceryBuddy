@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Recipe</title>
+    <style>
+        body {
+            background-color: #fde4ce;
+            font-family: monospace;
+            color: #242525;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1, h2, h3 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 30px;
+            color: #fde4ce;
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 30px;
+            background-color: #4E070C;
+            height: 30px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+            }
+        }
+
+        .bigcont {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 90%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .plus-minus-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .plus-button, .minus-button {
+            background-color: #4E070C;
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .ingredient-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ingredient-row input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: #4E070C;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #fde4ce;
+        }
+
+        .save-recipe-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4E070C;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .save-recipe-btn:hover {
+            background-color: #fde4ce;
+            color: #4E070C;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="topnav">
+        <h1>Create Recipe</h1>
+    </header>
+
+    <div class="bigcont">
+        <div class="popup-content">
+            <!-- Recipe name input -->
+            <input name="name" type="text" id="recipeName" placeholder="Recipe Name" />
+
+            <!-- Buttons to add/remove ingredient rows -->
+            <div class="plus-minus-buttons">
+                <button class="plus-button" onclick="addIngredientRow()">+</button>
+                <button class="minus-button" onclick="removeIngredientRow()">-</button>
+            </div>
+
+            <!-- Dynamic ingredient rows -->
+            <div id="ingredientRows">
+                <!-- Ingredient rows will appear here -->
+            </div>
+
+            <!-- Save Recipe button -->
+		<form method="POST">
+                <button class="save-recipe-btn">Save Recipe</button>
+		</form>
+        </div>
+    </div>
+
+    <script>
+        let ingredientCount = 0;
+
+        // Add a new ingredient row
+        function addIngredientRow() {
+            ingredientCount++;
+            const ingredientRow = document.createElement('div');
+            ingredientRow.classList.add('ingredient-row');
+            ingredientRow.innerHTML = `
+                <input name="ingredients" type="text" placeholder="Ingredient ${ingredientCount}" />
+                <input name="quantity" type="text" placeholder="Quantity (g)" />
+            `;
+            document.getElementById('ingredientRows').appendChild(ingredientRow);
+        }
+
+        // Remove the last ingredient row
+        function removeIngredientRow() {
+            const ingredientRows = document.getElementById('ingredientRows');
+            if (ingredientRows.children.length > 0) {
+                ingredientRows.removeChild(ingredientRows.lastElementChild);
+                ingredientCount--;
+            }
+        }
+    </script>
+</body>
+</html>

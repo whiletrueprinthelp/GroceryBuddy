@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weekly Meal Plan</title>
+    <style>
+        body {
+            background-color: #fde4ce;
+            font-family: monospace;
+            color: #242525;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1, h2 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 0px;
+            padding: 5px;
+            color: #fde4ce;
+        }
+
+        h3 {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 30px;
+            color: #242525;
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 30px;
+            background-color: #4E070C;
+            height: 30px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+            }
+        }
+
+        .bigcont {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            align-items: flex-start;
+        }
+
+        .conlef {
+            width: 75%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Adjust grid to show two columns */
+            grid-gap: 20px;
+        }
+
+        .plsalign {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            grid-template-rows: auto 1fr auto; /* This ensures the button stays at the bottom */
+        }
+
+        .saver {
+            grid-column: span 4;  /* Makes the Save Plan button span the entire width of the grid */
+            margin-top: 20px; /* Adds space between the last meal input and the button */
+            display: flex;
+            justify-content: center; /* Centers the button */
+        }
+
+        .item {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 35px;
+            font-weight: bold;
+            margin: 0;
+            color: #fde4ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Day {
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .Food {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .dropdowns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .dropdowns select {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .plus-minus-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .plus-button, .minus-button {
+            background-color: #4E070C;
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .create , .Viewsave {
+            width: 75%;
+            padding: 75px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: monospace;
+            font-weight: 100;
+            cursor: pointer;
+        }
+
+        .create:hover, .Viewsave:hover {
+            background-color: #E8E3CE;
+        }
+
+        .conright {
+            width: 25%;
+            padding: 20px;
+            height: 430px;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .save-recipe-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4E070C;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .save-recipe-btn:hover {
+            background-color: #fde4ce;
+            color: #4E070C;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="topnav">
+        <h1>Weekly Meal Plan</h1>
+    </header>
+
+    <div class="bigcont">
+        <!-- Left Container -->
+        <div class="conlef">
+            <div class="plsalign">
+                <!-- Days section -->
+                <div class="item">
+                    <div class="Day">Monday</div>
+                    <div class="Food" id="mondayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('mondayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('mondayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repeat for other days -->
+
+                <div class="item">
+                    <div class="Day">Tuesday</div>
+                    <div class="Food" id="tuesdayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('tuesdayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('tuesdayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="Day">Wednesday</div>
+                    <div class="Food" id="tuesdayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('tuesdayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('tuesdayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="Day">Thursday</div>
+                    <div class="Food" id="tuesdayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('tuesdayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('tuesdayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="Day">Friday</div>
+                    <div class="Food" id="tuesdayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('tuesdayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('tuesdayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="Day">Saturday</div>
+                    <div class="Food" id="tuesdayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('tuesdayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('tuesdayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="Day">Sunday</div>
+                    <div class="Food" id="tuesdayFood">
+                        <div class="plus-minus-buttons">
+                            <button class="plus-button" onclick="addRow('tuesdayFood')">+</button>
+                            <button class="minus-button" onclick="removeRow('tuesdayFood')">-</button>
+                        </div>
+                        <div class="dropdowns">
+                            <select name="recipe" class="recipe">
+                                <option value="recipe1">Recipe 1</option>
+                                <option value="recipe2">Recipe 2</option>
+                                <option value="recipe3">Recipe 3</option>
+                            </select>
+                            <select name="qty" class="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="saver">
+		<form action="/groceries">
+                    <button class="save-recipe-btn" onclick="saveRecipe()">Save Plan</button>
+		</form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Container -->
+        <div class="conright">
+	<form action="/create">
+            <button class="create" onclick="openPopup()">Create Recipe</button>
+	</form>
+	<form action="/viewsavedrecipes">
+            <button class="Viewsave">Saved Recipes</button>
+	</form>
+        </div>
+    </div>
+
+    <!-- Popup for creating recipe -->
+    <div class="popup" id="recipePopup">
+        <button class="popup-content">
+        </button>
+    </div>
+
+    <script>
+        let ingredientCount = 0;
+        function addRow(day) {
+            const dayElement = document.getElementById(day);
+            const newRow = document.createElement('div');
+            newRow.classList.add('dropdowns');
+            newRow.innerHTML = `
+                <select name="recipe" class="recipe">
+                    <option value="recipe1">Recipe 1</option>
+                    <option value="recipe2">Recipe 2</option>
+                    <option value="recipe3">Recipe 3</option>
+                </select>
+                <select name="qty" class="qty">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            `;
+            dayElement.appendChild(newRow);
+        }
+
+        function removeRow(day) {
+            const dayElement = document.getElementById(day);
+            if (dayElement.children.length > 0) {
+                dayElement.removeChild(dayElement.lastElementChild);
+            }
+        }
+
+        function openPopup() {
+            document.getElementById('recipePopup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('recipePopup').style.display = 'none';
+        }
+
+        function saveRecipe() {
+            document.getElementById('recipeName').value = '';
+            ingredientCount = 0;
+            document.getElementById('ingredientRows').innerHTML = '';
+            closePopup();
+        }
+
+        function addIngredientRow() {
+            ingredientCount++;
+            const ingredientRow = document.createElement('div');
+            ingredientRow.classList.add('ingredient-row');
+            ingredientRow.innerHTML = `
+                <input type="text" placeholder="Ingredient ${ingredientCount}" />
+                <input type="text" placeholder="Quantity" />
+            `;
+            document.getElementById('ingredientRows').appendChild(ingredientRow);
+        }
+
+        function removeIngredientRow() {
+            const ingredientRows = document.getElementById('ingredientRows');
+            if (ingredientRows.children.length > 0) {
+                ingredientRows.removeChild(ingredientRows.lastElementChild);
+                ingredientCount--;
+            }
+        }
+    </script>
+</body>
+</html>
